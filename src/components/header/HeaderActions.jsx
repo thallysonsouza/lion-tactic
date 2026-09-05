@@ -1,43 +1,144 @@
-import {
+import { Bell, Moon, Settings } from "lucide-react";
 
-    Bell,
+import { useEffect, useRef, useState } from "react";
 
-    Moon,
+import { useAuth } from "../../context/AuthContext";
+import { supabase } from "../../lib/supabaseClient";
 
-    Settings
-
-} from "lucide-react";
+import NotificationPanel from "../notifications/NotificationPanel";
 
 import "./HeaderActions.css";
 
-function HeaderActions(){
+function HeaderActions() {
+  const { user, isAuthenticated } = useAuth();
 
-    return(
+  const [notificationOpen, setNotificationOpen] = useState(false);
 
-        <div className="header-actions">
+  const [unreadCount, setUnreadCount] = useState(0);
 
-            <button>
+  const notificationButtonRef = useRef(null);
 
-                <Bell size={18}/>
+  /* =========================================================
+     LOAD UNREAD COUNT
+  ========================================================= */
 
-            </button>
+  async function loadUnreadCount() {
+    if (!isAuthenticated || !user) {
+      setUnreadCount(0);
 
-            <button>
+      return;
+    }
 
-                <Moon size={18}/>
+    const { count, error } = await supabase
+      .from("notifications")
+      .select("id", {
+        count: "exact",
+        head: true,
+      })
+      .eq("user_id", user.id)
+      .is("read_at", null);
 
-            </button>
+    if (error) {
+      console.error("Error loading unread notifications:", error);
 
-            <button>
+      return;
+    }
 
-                <Settings size={18}/>
+    setUnreadCount(count || 0);
+  }
 
-            </button>
+  /* =========================================================
+     INITIAL LOAD
+  ========================================================= */
 
-        </div>
+  useEffect(() => {
+    loadUnreadCount();
+  }, [isAuthenticated, user]);
 
-    );
+  /* =========================================================
+     ESCAPE
+  ========================================================= */
 
+  useEffect(() => {
+    function handleEscape(event) {
+      if (event.key === "Escape") {
+        setNotificationOpen(false);
+      }
+    }
+
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
+
+  /* =========================================================
+     TOGGLE
+  ========================================================= */
+
+  function handleNotificationClick() {
+    setNotificationOpen((current) => !current);
+  }
+
+  /* =========================================================
+     CLOSE
+  ========================================================= */
+
+  function handleCloseNotifications() {
+    setNotificationOpen(false);
+
+    loadUnreadCount();
+  }
+
+  return (
+    <div className="header-actions">
+      {/* =====================================================
+          NOTIFICATIONS
+      ===================================================== */}
+
+      <div className="header-notification-wrapper">
+        <button
+          ref={notificationButtonRef}
+          type="button"
+          className="header-notification-button"
+          onClick={handleNotificationClick}
+          aria-label="Notifications"
+        >
+          <Bell size={18} />
+
+          {unreadCount > 0 && (
+            <span className="header-notification-badge">
+              {unreadCount > 99 ? "99+" : unreadCount}
+            </span>
+          )}
+        </button>
+
+        {notificationOpen && (
+          <NotificationPanel
+            onClose={handleCloseNotifications}
+            anchorRef={notificationButtonRef}
+          />
+        )}
+      </div>
+
+      {/* =====================================================
+          THEME
+      ===================================================== */}
+
+      <button type="button" aria-label="Theme">
+        <Moon size={18} />
+      </button>
+
+      {/* =====================================================
+          SETTINGS
+      ===================================================== */}
+
+      <button type="button" aria-label="Settings">
+        <Settings size={18} />
+      </button>
+    </div>
+  );
 }
 
 export default HeaderActions;

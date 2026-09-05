@@ -1,0 +1,151 @@
+.sticker-card {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 13px;
+
+  border: 1px solid var(--border);
+  border-radius: 9px;
+
+  background: var(--panel);
+
+  color: var(--text);
+
+  overflow: hidden;
+
+  transition:
+    border-color 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.sticker-card:hover {
+  transform: translateY(-1px);
+
+  border-color: rgba(255, 215, 0, 0.35);
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+/* =========================================================
+   NUMBER
+========================================================= */
+
+.sticker-card-number {
+  font-size: 17px;
+  font-weight: 700;
+
+  color: #ffd700;
+
+  letter-spacing: 0.02em;
+}
+
+/* =========================================================
+   NAME
+========================================================= */
+
+.sticker-card-name {
+  margin-top: 8px;
+
+  color: var(--text);
+
+  font-size: 12px;
+  font-weight: 600;
+
+  line-height: 1.2;
+}
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.sticker-card-status {
+  margin-top: auto;
+  padding-top: 12px;
+
+  min-height: 26px;
+
+  color: var(--text-muted);
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing: 0.07em;
+}
+
+.sticker-card-duplicate .sticker-card-status {
+  color: #ffd700;
+}
+
+.sticker-card-missing .sticker-card-number {
+  color: var(--text-muted);
+}
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+.sticker-card-controls {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 10px;
+  padding-top: 9px;
+
+  border-top: 1px solid var(--border);
+}
+
+.sticker-card-control {
+  width: 26px;
+  height: 26px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid var(--border);
+  border-radius: 6px;
+
+  background: var(--background);
+
+  color: var(--text);
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.sticker-card-control:hover:not(:disabled) {
+  border-color: #ffd700;
+
+  background: rgba(255, 215, 0, 0.08);
+}
+
+.sticker-card-control:disabled {
+  opacity: 0.3;
+
+  cursor: default;
+}
+
+.sticker-card-quantity {
+  min-width: 22px;
+
+  text-align: center;
+
+  color: var(--text);
+
+  font-size: 12px;
+  font-weight: 700;
+}

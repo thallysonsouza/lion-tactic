@@ -1,0 +1,540 @@
+.notification-panel {
+  position: fixed;
+
+  z-index: 99999;
+
+  width: 390px;
+
+  max-width: calc(100vw - 24px);
+
+  max-height: min(620px, calc(100vh - 90px));
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+  border-radius: 10px;
+
+  /* Fundo totalmente opaco */
+  background: #111111;
+
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.notification-panel-header {
+  min-height: 58px;
+
+  padding: 0 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px solid var(--border);
+
+  flex-shrink: 0;
+
+  background: #111111;
+}
+
+.notification-panel-header > div {
+  min-width: 0;
+}
+
+.notification-panel-header span {
+  display: block;
+
+  margin-bottom: 2px;
+
+  color: var(--text-muted);
+
+  font-size: 6px;
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+}
+
+.notification-panel-header h2 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.notification-panel-close {
+  width: 28px;
+  height: 28px;
+
+  border: 1px solid var(--border);
+  border-radius: 6px;
+
+  background: #151515;
+  color: var(--text-muted);
+
+  font-size: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.notification-panel-close:hover {
+  color: var(--text);
+
+  border-color: #ffd700;
+
+  background: #1b1b1b;
+}
+
+/* =========================================================
+   LIST
+========================================================= */
+
+.notification-list {
+  flex: 1;
+
+  min-height: 0;
+
+  padding: 9px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  background: #111111;
+}
+
+.notification-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.notification-list::-webkit-scrollbar-track {
+  background: #111111;
+}
+
+.notification-list::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+
+  background: #343434;
+}
+
+/* =========================================================
+   NOTIFICATION ITEM
+========================================================= */
+
+.notification-item {
+  padding: 10px;
+
+  border: 1px solid var(--border);
+  border-radius: 7px;
+
+  background: #151515;
+
+  flex-shrink: 0;
+}
+
+.notification-item.unread {
+  border-color: rgba(255, 215, 0, 0.5);
+
+  background: #18160d;
+}
+
+/* =========================================================
+   ITEM HEADER
+========================================================= */
+
+.notification-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 5px;
+}
+
+.notification-item-header > span:first-child {
+  color: #ffd700;
+
+  font-size: 6px;
+  font-weight: 800;
+
+  letter-spacing: 0.1em;
+}
+
+.notification-unread-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #ffd700;
+
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   ITEM TEXT
+========================================================= */
+
+.notification-item > strong {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: var(--text);
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.notification-item > p {
+  margin: 0 0 8px;
+
+  color: var(--text-muted);
+
+  font-size: 7px;
+
+  line-height: 1.4;
+}
+
+.notification-item > small {
+  color: var(--text-muted);
+
+  font-size: 6px;
+}
+
+/* =========================================================
+   TRADE PROPOSAL
+========================================================= */
+
+.notification-trade {
+  margin-top: 8px;
+
+  padding: 9px;
+
+  border: 1px solid var(--border);
+  border-radius: 6px;
+
+  background: #111111;
+}
+
+/* =========================================================
+   PLAYER
+========================================================= */
+
+.notification-trade-player {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+
+  margin-bottom: 8px;
+}
+
+.notification-trade-player span {
+  color: var(--text-muted);
+
+  font-size: 6px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+}
+
+.notification-trade-player strong {
+  color: var(--text);
+
+  font-size: 11px;
+}
+
+/* =========================================================
+   EXCHANGE
+========================================================= */
+
+.notification-trade-exchange {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto
+    minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 8px;
+
+  border-radius: 5px;
+
+  background: #151515;
+}
+
+.notification-trade-exchange > div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.notification-trade-exchange span {
+  color: var(--text-muted);
+
+  font-size: 5.5px;
+  font-weight: 700;
+
+  letter-spacing: 0.07em;
+}
+
+.notification-trade-exchange strong {
+  color: var(--text);
+
+  font-size: 12px;
+}
+
+.notification-trade-arrow {
+  color: #ffd700;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.notification-trade-actions {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap: 6px;
+
+  margin-top: 7px;
+}
+
+.notification-trade-actions button {
+  height: 28px;
+
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  font-size: 6px;
+  font-weight: 800;
+
+  letter-spacing: 0.06em;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease,
+    background 0.15s ease;
+}
+
+.notification-trade-actions button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.notification-trade-accept {
+  border: 1px solid #8fa86b;
+
+  background: #171b12;
+
+  color: #8fa86b;
+}
+
+.notification-trade-accept:hover:not(:disabled) {
+  background: #202819;
+}
+
+.notification-trade-reject {
+  border: 1px solid #ff8f8f;
+
+  background: #1b1212;
+
+  color: #ff8f8f;
+}
+
+.notification-trade-reject:hover:not(:disabled) {
+  background: #271818;
+}
+
+.notification-trade-actions button:disabled {
+  opacity: 0.5;
+
+  cursor: default;
+}
+
+/* =========================================================
+   RESULT
+========================================================= */
+
+.notification-trade-result {
+  margin-top: 7px;
+
+  padding: 8px;
+
+  border-radius: 5px;
+}
+
+.notification-trade-result strong {
+  display: block;
+
+  margin-bottom: 4px;
+
+  font-size: 7px;
+
+  letter-spacing: 0.07em;
+}
+
+.notification-trade-result p {
+  margin: 0;
+
+  font-size: 7px;
+
+  line-height: 1.4;
+}
+
+.notification-trade-result.accepted {
+  border: 1px solid rgba(143, 168, 107, 0.35);
+
+  background: #151a11;
+
+  color: #8fa86b;
+}
+
+.notification-trade-result.rejected {
+  border: 1px solid rgba(255, 143, 143, 0.3);
+
+  background: #1a1212;
+
+  color: #ff8f8f;
+}
+
+/* =========================================================
+   STATE
+========================================================= */
+
+.notification-state {
+  min-height: 180px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--text-muted);
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 600px) {
+  .notification-panel {
+    width: calc(100vw - 20px);
+
+    max-width: calc(100vw - 20px);
+  }
+}
+
+/* =========================================================
+   NOTIFICATION TYPE
+========================================================= */
+
+.notification-item-type {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+}
+
+.notification-item-type > span:first-child {
+  color: #ffd700;
+
+  font-size: 6px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.1em;
+}
+
+/* =========================================================
+   DELETE BUTTON
+========================================================= */
+
+.notification-delete-button {
+  width: 24px;
+  height: 24px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--border);
+
+  border-radius: 5px;
+
+  background: transparent;
+
+  color: var(--text-muted);
+
+  cursor: pointer;
+
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease,
+    transform 0.15s ease;
+}
+
+.notification-delete-button:hover {
+  color: #ff8f8f;
+
+  border-color: #ff8f8f;
+
+  background: rgba(255, 143, 143, 0.08);
+
+  transform: translateY(-1px);
+}
+
+.notification-delete-button:active {
+  transform: translateY(0);
+}

@@ -1,45 +1,91 @@
-.header-actions{
+.header-actions {
+  display: flex;
 
-    display:flex;
+  align-items: center;
 
-    align-items:center;
-
-    gap:12px;
-
+  gap: 12px;
 }
 
-.header-actions button{
+.header-actions button {
+  width: 42px;
+  height: 42px;
 
-    width:42px;
+  border: none;
 
-    height:42px;
+  border-radius: 12px;
 
-    border:none;
+  background: var(--background-light);
 
-    border-radius:12px;
+  color: var(--text);
 
-    background:var(--background-light);
+  display: flex;
 
-    color:var(--text);
+  justify-content: center;
+  align-items: center;
 
-    display:flex;
+  cursor: pointer;
 
-    justify-content:center;
-
-    align-items:center;
-
-    cursor:pointer;
-
-    transition:.2s;
-
+  transition: 0.2s;
 }
 
-.header-actions button:hover{
+.header-actions button:hover {
+  background: var(--primary);
 
-    background:var(--primary);
+  color: #111;
 
-    color:#111;
+  transform: translateY(-2px);
+}
 
-    transform:translateY(-2px);
+/* =========================================================
+   NOTIFICATION WRAPPER
+========================================================= */
 
+.header-notification-wrapper {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+}
+
+/* =========================================================
+   NOTIFICATION BUTTON
+========================================================= */
+
+.header-notification-button {
+  position: relative;
+}
+
+/* =========================================================
+   NOTIFICATION BADGE
+========================================================= */
+
+.header-notification-badge {
+  position: absolute;
+
+  top: -4px;
+  right: -4px;
+
+  min-width: 17px;
+  height: 17px;
+
+  padding: 0 4px;
+
+  border: 2px solid var(--background);
+
+  border-radius: 999px;
+
+  background: #ffd700;
+
+  color: #111;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  line-height: 1;
+
+  pointer-events: none;
 }

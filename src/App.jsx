@@ -1,11 +1,14 @@
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
+import "./App.css";
+
 import Dashboard from "./components/layout/Dashboard";
 
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Teams from "./pages/Teams";
 import Players from "./pages/Players";
+import Album from "./pages/Album";
 
 import AuctionSimulator from "./pages/AuctionSimulator";
 import ManualAuctionAnalyzer from "./pages/ManualAuctionAnalyzer";
@@ -28,7 +31,20 @@ import { TrainingSimulatorProvider } from "./context/TrainingSimulatorContext";
 import { useAuth } from "./context/AuthContext";
 
 /* =========================================================
+   LOADING SCREEN
+========================================================= */
+
+function LoadingScreen() {
+  return (
+    <div className="app-loading">
+      <span>LOADING...</span>
+    </div>
+  );
+}
+
+/* =========================================================
    PROTECTED ROUTE
+   Permite usuário autenticado ou visitante
 ========================================================= */
 
 function ProtectedRoute({ children }) {
@@ -41,24 +57,7 @@ function ProtectedRoute({ children }) {
   ===================================================== */
 
   if (loading) {
-    return (
-      <div
-        style={{
-          width: "100vw",
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "#080808",
-          color: "#ffe66d",
-          fontSize: "11px",
-          fontWeight: 600,
-          letterSpacing: "0.16em",
-        }}
-      >
-        LOADING...
-      </div>
-    );
+    return <LoadingScreen />;
   }
 
   /* =====================================================
@@ -80,6 +79,33 @@ function ProtectedRoute({ children }) {
   /* =====================================================
      AUTHENTICATED OR GUEST
   ===================================================== */
+
+  return children;
+}
+
+/* =========================================================
+   AUTHENTICATED ROUTE
+   Exige conta real do Supabase
+========================================================= */
+
+function AuthenticatedRoute({ children }) {
+  const { isAuthenticated, loading } = useAuth();
+
+  /* =====================================================
+     WAIT FOR AUTH
+  ===================================================== */
+
+  if (loading) {
+    return <LoadingScreen />;
+  }
+
+  /* =====================================================
+     GUEST NOT ALLOWED
+  ===================================================== */
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
 
   return children;
 }
@@ -123,6 +149,7 @@ function App() {
 
       {/* =================================================
           PROTECTED APP
+          Authenticated user OR guest
       ================================================= */}
 
       <Route
@@ -146,6 +173,20 @@ function App() {
         ================================================= */}
 
         <Route path="teams" element={<Teams />} />
+
+        {/* =================================================
+            ALBUM
+            Authenticated user only
+        ================================================= */}
+
+        <Route
+          path="album"
+          element={
+            <AuthenticatedRoute>
+              <Album />
+            </AuthenticatedRoute>
+          }
+        />
 
         {/* =================================================
             AUCTION

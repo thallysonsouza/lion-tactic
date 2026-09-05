@@ -1,0 +1,191 @@
+.album-reset-button {
+  height: 34px;
+
+  padding: 0 16px;
+
+  border: 1px solid rgba(255, 110, 110, 0.35);
+  border-radius: 7px;
+
+  background: transparent;
+
+  color: #e98f8f;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 0.07em;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.album-reset-button:hover {
+  background: rgba(255, 100, 100, 0.08);
+
+  border-color: rgba(255, 110, 110, 0.55);
+
+  color: #ffaaaa;
+
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.album-reset-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 1000;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.72);
+}
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.album-reset-modal {
+  width: min(420px, 100%);
+
+  padding: 24px;
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  background: var(--panel);
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.album-reset-modal-header {
+  margin-bottom: 16px;
+}
+
+.album-reset-modal-header > span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #e98f8f;
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+}
+
+.album-reset-modal-header h2 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.album-reset-modal p {
+  margin: 0 0 8px;
+
+  color: var(--text-muted);
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.album-reset-error {
+  margin-top: 14px;
+
+  padding: 9px 10px;
+
+  border: 1px solid rgba(255, 110, 110, 0.25);
+  border-radius: 7px;
+
+  background: rgba(255, 110, 110, 0.06);
+
+  color: #ffaaaa;
+
+  font-size: 10px;
+}
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.album-reset-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 8px;
+
+  margin-top: 22px;
+}
+
+.album-reset-cancel,
+.album-reset-confirm {
+  height: 34px;
+
+  padding: 0 16px;
+
+  border-radius: 7px;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 0.07em;
+
+  cursor: pointer;
+
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
+
+.album-reset-cancel {
+  border: 1px solid var(--border);
+
+  background: transparent;
+
+  color: var(--text-muted);
+}
+
+.album-reset-confirm {
+  border: 1px solid rgba(255, 110, 110, 0.45);
+
+  background: #8e3030;
+
+  color: #ffffff;
+}
+
+.album-reset-cancel:hover:not(:disabled),
+.album-reset-confirm:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.album-reset-cancel:disabled,
+.album-reset-confirm:disabled {
+  opacity: 0.5;
+
+  cursor: default;
+
+  transform: none;
+}

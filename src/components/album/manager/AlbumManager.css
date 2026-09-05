@@ -1,0 +1,558 @@
+.album-manager {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+
+  min-height: 0;
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   TABS
+========================================================= */
+
+.album-manager-tabs {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 4px;
+
+  padding: 2px;
+
+  border: 1px solid var(--border);
+  border-radius: 7px;
+
+  background: var(--panel);
+
+  flex-shrink: 0;
+}
+
+.album-manager-tab {
+  height: 28px;
+
+  padding: 0 16px;
+
+  border: none;
+  border-radius: 5px;
+
+  background: transparent;
+
+  color: var(--text-muted);
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.album-manager-tab:hover {
+  color: var(--text);
+}
+
+.album-manager-tab.active {
+  background: #ffd700;
+
+  color: #111111;
+}
+
+/* =========================================================
+   TOP AREA
+========================================================= */
+
+.album-manager-top {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.05fr)
+    minmax(0, 1fr);
+
+  gap: 10px;
+
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   OVERVIEW
+========================================================= */
+
+.album-manager-overview {
+  height: 92px;
+
+  min-width: 0;
+
+  padding: 12px 16px;
+
+  border: 1px solid var(--border);
+  border-radius: 9px;
+
+  background: var(--panel);
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 8px;
+}
+
+.album-manager-overview-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+.album-manager-overview-label {
+  display: block;
+
+  margin-bottom: 2px;
+
+  color: var(--text-muted);
+
+  font-size: 7px;
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+}
+
+.album-manager-overview h2 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.album-manager-overview-header > strong {
+  color: #ffd700;
+
+  font-size: 21px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.album-progress {
+  width: 100%;
+  height: 5px;
+
+  display: block;
+
+  border: none;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: var(--background);
+}
+
+.album-progress::-webkit-progress-bar {
+  background: var(--background);
+
+  border-radius: 999px;
+}
+
+.album-progress::-webkit-progress-value {
+  background: #ffd700;
+
+  border-radius: 999px;
+}
+
+.album-progress::-moz-progress-bar {
+  background: #ffd700;
+
+  border-radius: 999px;
+}
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.album-manager-stats {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 8px;
+}
+
+.album-manager-stats div {
+  padding-right: 8px;
+
+  border-right: 1px solid var(--border);
+}
+
+.album-manager-stats div:last-child {
+  border-right: none;
+}
+
+.album-manager-stats span {
+  display: block;
+
+  margin-bottom: 1px;
+
+  color: var(--text-muted);
+
+  font-size: 7px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+}
+
+.album-manager-stats strong {
+  color: var(--text);
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+.album-manager-settings {
+  height: 92px;
+
+  min-width: 0;
+
+  padding: 12px 16px;
+
+  border: 1px solid var(--border);
+  border-radius: 9px;
+
+  background: var(--panel);
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 8px;
+}
+
+.album-manager-settings-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+.album-manager-settings-header > span {
+  color: var(--text-muted);
+
+  font-size: 7px;
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+}
+
+.album-manager-settings-header small {
+  color: #8fa86b;
+
+  font-size: 7px;
+
+  white-space: nowrap;
+}
+
+.album-manager-settings-row {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto
+    auto;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+/* =========================================================
+   FIELD
+========================================================= */
+
+.album-manager-field {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.album-manager-field label {
+  color: var(--text-muted);
+
+  font-size: 7px;
+  font-weight: 700;
+
+  letter-spacing: 0.09em;
+}
+
+.album-manager-field input {
+  width: 100%;
+  height: 32px;
+
+  padding: 0 10px;
+
+  border: 1px solid var(--border);
+  border-radius: 6px;
+
+  outline: none;
+
+  background: var(--background);
+
+  color: var(--text);
+
+  font-size: 11px;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.album-manager-field input::placeholder {
+  color: var(--text-muted);
+}
+
+.album-manager-field input:focus {
+  border-color: #ffd700;
+
+  box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.12);
+}
+
+/* =========================================================
+   MATCH OPTION
+========================================================= */
+
+.album-manager-match {
+  height: 32px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 0 9px;
+
+  border: 1px solid var(--border);
+  border-radius: 6px;
+
+  color: var(--text);
+
+  font-size: 8px;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+}
+
+.album-manager-match input {
+  width: 13px;
+  height: 13px;
+
+  margin: 0;
+
+  accent-color: #ffd700;
+
+  cursor: pointer;
+}
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.album-manager-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+}
+
+/* =========================================================
+   SAVE
+========================================================= */
+
+.album-manager-save {
+  height: 32px;
+
+  padding: 0 15px;
+
+  border: none;
+  border-radius: 6px;
+
+  background: #ffd700;
+
+  color: #111111;
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing: 0.06em;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.album-manager-save:hover {
+  transform: translateY(-1px);
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.album-manager-save:disabled {
+  opacity: 0.55;
+
+  cursor: default;
+
+  transform: none;
+
+  box-shadow: none;
+}
+
+/* =========================================================
+   COLLECTION / STICKERS
+========================================================= */
+
+.album-manager-stickers {
+  width: 100%;
+
+  flex: 1;
+
+  min-height: 0;
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   MATCH VIEW
+========================================================= */
+
+.album-manager-match-view {
+  width: 100%;
+
+  flex: 1;
+
+  min-height: 0;
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.album-manager-loading {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #ffd700;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.16em;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+  .album-manager-top {
+    grid-template-columns: 1fr;
+  }
+
+  .album-manager-overview,
+  .album-manager-settings {
+    height: auto;
+  }
+
+  .album-manager-settings-row {
+    grid-template-columns:
+      minmax(0, 1fr)
+      auto
+      auto;
+  }
+}
+
+/* =========================================================
+   MATCH STATUS
+========================================================= */
+
+.album-manager-match-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 18px;
+  color: var(--text-muted);
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+}
+
+.album-match-status-dot {
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+
+.album-match-status-dot.active {
+  background: #8fa86b;
+  box-shadow: 0 0 7px rgba(143, 168, 107, 0.35);
+}
+
+.album-manager-match-status span:nth-child(2) {
+  color: var(--text-muted);
+}
+
+.album-match-countdown {
+  margin-left: 2px;
+  color: #ffd700;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+}

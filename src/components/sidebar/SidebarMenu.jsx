@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-import { House, Users, Gavel, Dumbbell } from "lucide-react";
+import { House, Users, Gavel, Dumbbell, BookOpen } from "lucide-react";
 
 import "./SidebarMenu.css";
 
@@ -30,6 +30,12 @@ function SidebarMenu({ open }) {
           <Dumbbell size={22} />
 
           {open && <span>Training Simulator</span>}
+        </NavLink>
+
+        <NavLink to="/app/album">
+          <BookOpen size={22} />
+
+          {open && <span>Album</span>}
         </NavLink>
       </nav>
     </div>

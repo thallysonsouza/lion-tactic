@@ -1,0 +1,31 @@
+.album-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 30px;
+}
+
+.album-header-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.album-header-title svg {
+  color: #ffd700;
+
+  filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.25));
+}
+
+.album-header-title h1 {
+  color: var(--text);
+
+  font-size: 34px;
+  font-weight: 700;
+
+  letter-spacing: 0.2px;
+}

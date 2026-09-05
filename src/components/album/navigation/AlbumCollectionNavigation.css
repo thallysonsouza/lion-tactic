@@ -1,0 +1,52 @@
+.album-collection-navigation {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 18px;
+}
+
+.album-collection-navigation-info {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.album-collection-name h2 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: 18px;
+  font-weight: 700;
+
+  letter-spacing: 0.2px;
+}
+
+.album-collection-range {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+}
+
+.album-collection-navigation-buttons {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}

@@ -1,0 +1,476 @@
+.album-match-panel {
+  width: 100%;
+  height: 100%;
+
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.album-match-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  flex-shrink: 0;
+}
+
+.album-match-header > div {
+  min-width: 0;
+}
+
+.album-match-header span {
+  display: block;
+
+  margin-bottom: 2px;
+
+  color: var(--text-muted);
+
+  font-size: 7px;
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+}
+
+.album-match-header h2 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.album-match-header > strong {
+  color: #ffd700;
+
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.album-match-inline-error {
+  flex-shrink: 0;
+
+  padding: 6px 9px;
+
+  border: 1px solid rgba(255, 143, 143, 0.2);
+
+  border-radius: 6px;
+
+  background: rgba(255, 143, 143, 0.04);
+
+  color: #ff8f8f;
+
+  font-size: 7px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   MATCH LIST
+========================================================= */
+
+.album-match-list {
+  width: 100%;
+
+  flex: 1;
+
+  min-height: 0;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+
+  gap: 8px;
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   MATCH CARD
+========================================================= */
+
+.album-match-card {
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+  min-height: 0;
+
+  padding: 10px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 8px;
+
+  background: #111111;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.album-match-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  min-height: 32px;
+
+  padding-bottom: 7px;
+  margin-bottom: 7px;
+
+  border-bottom: 1px solid var(--border);
+
+  flex-shrink: 0;
+}
+
+.album-match-card-top > div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.album-match-card-top span {
+  color: var(--text-muted);
+
+  font-size: 6px;
+  font-weight: 700;
+
+  letter-spacing: 0.1em;
+}
+
+.album-match-card-top strong {
+  color: var(--text);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+.album-match-exchange-count {
+  align-items: flex-end;
+}
+
+/* =========================================================
+   FEATURED EXCHANGE
+========================================================= */
+
+.album-match-featured {
+  width: 100%;
+
+  flex: 1;
+
+  min-height: 0;
+
+  display: grid;
+
+  grid-template-columns:
+    30px
+    minmax(0, 1fr)
+    auto
+    minmax(0, 1fr)
+    30px;
+
+  grid-template-rows:
+    minmax(0, 1fr)
+    30px;
+
+  align-items: center;
+
+  column-gap: 6px;
+  row-gap: 6px;
+}
+
+/* =========================================================
+   EXCHANGE SIDE
+========================================================= */
+
+.album-match-side {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 3px;
+}
+
+.album-match-side span {
+  color: var(--text-muted);
+
+  font-size: 5.5px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  white-space: nowrap;
+}
+
+.album-match-side strong {
+  color: var(--text);
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   CENTER ARROW
+========================================================= */
+
+.album-match-arrow {
+  color: #ffd700;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   EXCHANGE NAVIGATION
+========================================================= */
+
+.album-match-exchange-arrow {
+  width: 28px;
+  height: 28px;
+
+  padding: 0;
+
+  border: 1px solid var(--border);
+
+  border-radius: 5px;
+
+  background: transparent;
+
+  color: var(--text-muted);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease,
+    transform 0.15s ease;
+}
+
+.album-match-exchange-arrow:hover:not(:disabled) {
+  color: #ffd700;
+
+  border-color: #ffd700;
+
+  background: rgba(255, 215, 0, 0.05);
+
+  transform: translateY(-1px);
+}
+
+.album-match-exchange-arrow:disabled {
+  opacity: 0.22;
+
+  cursor: default;
+}
+
+/* =========================================================
+   NEGOTIATE
+========================================================= */
+
+.album-match-action {
+  grid-column: 1 / -1;
+
+  justify-self: center;
+
+  height: 27px;
+
+  padding: 0 16px;
+
+  border: 1px solid #ffd700;
+
+  border-radius: 5px;
+
+  background: #ffd700;
+
+  color: #111111;
+
+  font-size: 6px;
+  font-weight: 800;
+
+  letter-spacing: 0.07em;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.album-match-action:hover:not(:disabled) {
+  transform: translateY(-1px);
+
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.12);
+}
+
+.album-match-action:disabled {
+  opacity: 0.55;
+
+  cursor: default;
+}
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.album-match-pagination {
+  height: 27px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  flex-shrink: 0;
+}
+
+.album-match-page-numbers {
+  display: flex;
+  align-items: center;
+
+  gap: 3px;
+}
+
+.album-match-page-arrow,
+.album-match-page-number {
+  min-width: 25px;
+  height: 25px;
+
+  padding: 0;
+
+  border: 1px solid var(--border);
+
+  border-radius: 5px;
+
+  background: #151515;
+
+  color: var(--text-muted);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 8px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.album-match-page-arrow:hover:not(:disabled),
+.album-match-page-number:hover {
+  color: var(--text);
+
+  border-color: #ffd700;
+}
+
+.album-match-page-arrow:disabled {
+  opacity: 0.3;
+
+  cursor: default;
+}
+
+.album-match-page-number.active {
+  border-color: #ffd700;
+
+  background: #ffd700;
+
+  color: #111111;
+}
+
+/* =========================================================
+   STATES
+========================================================= */
+
+.album-match-empty,
+.album-match-loading,
+.album-match-error {
+  flex: 1;
+
+  min-height: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 8px;
+
+  background: #111111;
+
+  text-align: center;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.04em;
+}
+
+.album-match-empty {
+  color: var(--text-muted);
+}
+
+.album-match-loading {
+  color: #ffd700;
+}
+
+.album-match-error {
+  color: #ff8f8f;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+  .album-match-list {
+    grid-template-columns: 1fr;
+
+    grid-template-rows: repeat(6, minmax(0, 1fr));
+  }
+}
