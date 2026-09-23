@@ -1,0 +1,1800 @@
+/* =========================================================
+   LIONTACTIC — MOBILE / PORTRAIT LAYER
+   ---------------------------------------------------------
+   This file intentionally contains ONLY mobile overrides.
+   Desktop styles remain untouched.
+========================================================= */
+
+@media (max-width: 768px) {
+  :root {
+    --mobile-nav-height: 70px;
+    --mobile-page-padding: 14px;
+    --mobile-gap: 12px;
+  }
+
+  html,
+  body,
+  #root {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    overscroll-behavior: none;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  img,
+  svg,
+  video,
+  canvas {
+    max-width: 100%;
+  }
+
+  /* =======================================================
+     APP SHELL
+  ======================================================= */
+
+  .dashboard {
+    width: 100%;
+    height: 100dvh;
+    min-height: 100dvh;
+
+    padding: 10px;
+    padding-bottom: calc(var(--mobile-nav-height) + 10px);
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 52px minmax(0, 1fr);
+    grid-template-areas:
+      "header"
+      "main";
+
+    gap: 10px;
+    overflow: hidden;
+  }
+
+  .header-area {
+    grid-area: header;
+    min-width: 0;
+    z-index: 50;
+  }
+
+  /*
+   * =======================================================
+   * MAIN MOBILE SCROLL
+   * -------------------------------------------------------
+   * The Dashboard is the owner of the vertical scroll.
+   * All pages rendered by <Outlet /> scroll inside here.
+   * =======================================================
+   */
+
+  .main-area {
+    grid-area: main;
+    min-width: 0;
+    min-height: 0;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+
+    scrollbar-width: thin;
+  }
+
+  .bottom-area {
+    display: none;
+  }
+
+  /* =======================================================
+     TOP HEADER
+  ======================================================= */
+
+  .header {
+    border-radius: 14px;
+  }
+
+  .header-content {
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    padding: 0 10px;
+  }
+
+  .header-center {
+    display: none;
+  }
+
+  .header-left {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .breadcrumb {
+    min-width: 0;
+    gap: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .breadcrumb-item {
+    gap: 5px;
+    min-width: 0;
+  }
+
+  .breadcrumb-item:not(:last-child) {
+    display: none;
+  }
+
+  .breadcrumb-current {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .header-right {
+    gap: 4px;
+  }
+
+  .header-actions {
+    gap: 5px;
+  }
+
+  .header-actions button {
+    width: 38px;
+    height: 38px;
+  }
+
+  /* =======================================================
+     MOBILE BOTTOM NAVIGATION
+     Reuses the existing sidebar component.
+  ======================================================= */
+
+  .sidebar-area {
+    position: fixed;
+    left: 10px;
+    right: 10px;
+    bottom: max(10px, env(safe-area-inset-bottom));
+    width: auto;
+    height: var(--mobile-nav-height);
+    z-index: 1000;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    backdrop-filter: blur(16px);
+  }
+
+  .sidebar-content,
+  .sidebar-content.open {
+    width: 100%;
+    height: 100%;
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .sidebar-content > div:first-child {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .sidebar-logo {
+    display: none;
+  }
+
+  .sidebar-top {
+    width: 100%;
+  }
+
+  /*
+   * Five navigation items — all on one line.
+   */
+
+  .sidebar-top nav {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 4px;
+  }
+
+  .sidebar-top nav a {
+    min-height: 52px;
+    height: 52px;
+    padding: 6px 2px;
+    border-radius: 14px;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .sidebar-top nav a:hover {
+    transform: none;
+  }
+
+  .sidebar-top nav a.active {
+    box-shadow: 0 0 14px rgba(255, 215, 0, 0.22);
+  }
+
+  .sidebar-top nav a svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .sidebar-top nav span {
+    display: none;
+  }
+
+  .sidebar-bottom {
+    display: none;
+  }
+
+  /* =======================================================
+     PAGE CONTAINER
+     -------------------------------------------------------
+     IMPORTANT:
+     .main-area is the scroll container.
+     .page-container must NOT create another scroll.
+  ======================================================= */
+
+  .page-container {
+    width: 100%;
+    min-width: 0;
+    min-height: 100%;
+
+    height: auto;
+
+    padding: var(--mobile-page-padding);
+
+    /*
+     * Extra space at the bottom so the last content
+     * is not hidden behind the fixed navigation.
+     */
+    padding-bottom: calc(var(--mobile-nav-height) + 40px);
+
+    gap: 16px;
+
+    overflow: visible;
+  }
+
+  .page-header {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .page-header-left {
+    gap: 4px;
+  }
+
+  .page-header-left h1 {
+    font-size: clamp(23px, 7vw, 30px);
+    line-height: 1.08;
+  }
+
+  .page-header-left p {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .page-header-actions {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .page-header-actions > * {
+    max-width: 100%;
+  }
+
+  /* =======================================================
+     COMMON GRIDS / CARDS
+  ======================================================= */
+
+  .team-grid,
+  .auction-analyzer-grid,
+  .home-tools-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* =======================================================
+     TEAMS — MOBILE
+     -------------------------------------------------------
+     Scrolling is handled by .main-area (Dashboard).
+     Teams only needs a single-column, auto-height layout.
+  ======================================================= */
+
+  .page-container:has(.teams-header) {
+    height: auto;
+    min-height: 100%;
+    overflow: visible;
+  }
+
+  .page-container:has(.teams-header) .team-grid {
+    width: 100%;
+    min-width: 0;
+
+    display: grid;
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+
+    height: auto !important;
+    min-height: max-content;
+    align-content: start;
+  }
+
+  .page-container:has(.teams-header) .team-card,
+  .page-container:has(.teams-header) .create-card {
+    width: 100%;
+    min-width: 0;
+    flex-shrink: 0;
+  }
+
+  .team-card {
+    height: 140px;
+  }
+
+  .team-card:hover {
+    transform: none;
+  }
+
+  .team-card-actions {
+    height: 48px;
+    border-top: 1px solid rgba(255, 215, 0, 0.15);
+  }
+
+  .create-card {
+    min-height: 140px;
+  }
+
+  .card,
+  .analysis-card,
+  .game-connection,
+  .auction-content,
+  .training-content,
+  .smart-auction-content,
+  .manual-auction-content {
+    max-width: 100%;
+  }
+
+  /* =======================================================
+     FORM LAYOUTS
+  ======================================================= */
+
+  .manual-player-input,
+  .manual-analysis-result,
+  .training-player-selection,
+  .training-configuration,
+  .smart-target,
+  .smart-auction-analysis {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .manual-player-input-grid,
+  .manual-analysis-result-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .form-field,
+  .input-field,
+  .select-field {
+    min-width: 0;
+    width: 100%;
+  }
+
+  input,
+  select,
+  textarea {
+    max-width: 100%;
+  }
+
+  /* =======================================================
+     AUCTION
+  ======================================================= */
+
+  .auction-header,
+  .teams-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .auction-header-title,
+  .teams-header h1 {
+    font-size: clamp(25px, 7vw, 32px);
+  }
+
+  .auction-header-navigation,
+  .teams-header-navigation {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .auction-analyzer-card {
+    min-width: 0;
+  }
+
+  .auction-analyzer-card-content {
+    min-width: 0;
+  }
+
+  .manual-auction-manager,
+  .manual-auction-content {
+    grid-template-columns: 1fr !important;
+  }
+
+  .manual-auction-manager {
+    gap: 14px;
+  }
+
+  .manual-player-input,
+  .manual-analysis-result {
+    width: 100%;
+  }
+
+  .smart-target-grid,
+  .smart-target-positions,
+  .smart-target-skills,
+  .smart-target-form {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .smart-target-positions {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  /* =======================================================
+     TRAINING
+  ======================================================= */
+
+  .training-simulator-content {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .training-player-selection,
+  .training-configuration,
+  .training-result,
+  .training-final-skills {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .training-player-selection-grid,
+  .training-configuration-grid,
+  .training-result-grid,
+  .training-final-skills-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* =======================================================
+     MODALS
+  ======================================================= */
+
+  .team-modal,
+  .player-scanner,
+  .player-details-modal,
+  .modal,
+  .confirm-dialog {
+    width: calc(100vw - 28px) !important;
+    max-width: calc(100vw - 28px) !important;
+    max-height: calc(100dvh - 28px);
+  }
+
+  .team-modal-body,
+  .player-scanner-body {
+    padding: 16px;
+  }
+
+  .team-modal-header,
+  .team-modal-footer,
+  .player-scanner-header,
+  .player-scanner-footer {
+    padding: 14px 16px;
+  }
+
+  .team-modal-footer,
+  .player-scanner-footer {
+    flex-wrap: wrap;
+  }
+
+  .team-modal-footer > *,
+  .player-scanner-footer > * {
+    flex: 1 1 auto;
+  }
+
+  /* =======================================================
+     LOGIN / AUTH
+  ======================================================= */
+
+  .login-page,
+  .forgot-password-page,
+  .update-password-page {
+    width: 100%;
+    min-height: 100dvh;
+    padding: max(18px, env(safe-area-inset-top)) 14px
+      max(18px, env(safe-area-inset-bottom)) 14px;
+    overflow-y: auto;
+  }
+
+  .login-card,
+  .forgot-password-card,
+  .update-password-card {
+    width: 100%;
+    max-width: 430px;
+    margin-inline: auto;
+  }
+
+  /* =======================================================
+     HOME
+  ======================================================= */
+
+  .home-page {
+    width: 100%;
+    min-width: 0;
+    min-height: 100%;
+    padding: 0 14px 24px;
+
+    /*
+     * Home is inside Dashboard, so Dashboard .main-area
+     * owns the vertical scroll.
+     */
+    overflow: visible;
+  }
+
+  .home-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+
+    min-height: 64px;
+    padding: 10px 0;
+  }
+
+  .home-navigation {
+    display: none;
+  }
+
+  .home-hero {
+    min-height: auto;
+    padding: 28px 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .home-hero-copy {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .home-hero-copy h1 {
+    font-size: clamp(34px, 11vw, 52px);
+    line-height: 0.98;
+  }
+
+  .home-hero-copy p {
+    font-size: 14px;
+  }
+
+  .home-primary-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .home-field-stage,
+  .home-analytics-visual,
+  .home-hero-status {
+    display: none;
+  }
+
+  .home-tools {
+    width: 100%;
+  }
+
+  .home-tool-card {
+    min-height: 145px;
+  }
+
+  .home-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 24px 0 12px;
+  }
+
+  /* =======================================================
+     LINEUP / FOOTBALL FIELD
+  ======================================================= */
+
+  .lineup-page,
+  .lineup-content,
+  .lineup-field-container,
+  .lineup-field {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .lineup-field-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /*
+   * Keep the pitch usable without letting the page itself
+   * become horizontally scrollable.
+   */
+
+  .football-field,
+  .field {
+    max-width: none;
+  }
+
+  /* =======================================================
+     DEBUG / DATA-HEAVY SCREENS
+  ======================================================= */
+
+  .scanner-debug-body,
+  .auction-scanner-debug-manager-results,
+  .overall-ocr-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .scanner-preview,
+  .scanner-controls,
+  .scanner-right {
+    min-height: 240px;
+  }
+
+  .scanner-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* =======================================================
+     TOUCH UX
+  ======================================================= */
+
+  .sidebar-top nav a,
+  button,
+  .home-tool-card,
+  .team-card-main,
+  .create-card {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  .team-card:hover,
+  .sidebar-top nav a:hover,
+  .home-tool-card:hover {
+    transform: none;
+  }
+
+  /* =======================================================
+     SMALL PHONES
+  ======================================================= */
+
+  @media (max-width: 390px) {
+    :root {
+      --mobile-nav-height: 66px;
+      --mobile-page-padding: 11px;
+    }
+
+    .dashboard {
+      padding: 8px;
+      padding-bottom: calc(var(--mobile-nav-height) + 8px);
+      gap: 8px;
+    }
+
+    .sidebar-area {
+      left: 8px;
+      right: 8px;
+      bottom: max(8px, env(safe-area-inset-bottom));
+    }
+
+    .sidebar-top nav {
+      gap: 4px;
+    }
+
+    .sidebar-top nav a {
+      height: 48px;
+      min-height: 48px;
+    }
+
+    .page-container {
+      padding: 11px;
+    }
+
+    .header-content {
+      padding: 0 8px;
+    }
+
+    .header-actions button {
+      width: 35px;
+      height: 35px;
+    }
+  }
+}
+
+/* =========================================================
+   PORTRAIT-ONLY MODE
+   ---------------------------------------------------------
+   On a phone held horizontally, the app is intentionally
+   covered and asks the user to rotate back to portrait.
+========================================================= */
+
+@media (max-width: 768px) and (orientation: landscape) {
+  html,
+  body,
+  #root {
+    overflow: hidden !important;
+  }
+
+  body > #root {
+    visibility: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 2147483646;
+    visibility: visible;
+
+    background:
+      radial-gradient(
+        circle at 50% 42%,
+        rgba(255, 215, 0, 0.08),
+        transparent 35%
+      ),
+      #050505;
+  }
+
+  body::after {
+    content: "VIRE O CELULAR PARA O MODO RETRATO";
+    position: fixed;
+    inset: 0;
+    z-index: 2147483647;
+    visibility: visible;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+    text-align: center;
+
+    color: #ffd700;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(14px, 3vw, 20px);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1.5;
+  }
+}
+
+/* =========================================================
+   VERY TALL / NOTCHED PHONES
+========================================================= */
+
+@supports (height: 100dvh) {
+  @media (max-width: 768px) {
+    .dashboard {
+      min-height: 100dvh;
+    }
+  }
+}
+
+/* =========================================================
+   LIONTACTIC — CORREÇÕES FINAIS DAS 3 TELAS MOBILE
+   HOME + LINEUP + TRAINING
+========================================================= */
+
+@media (max-width: 768px) {
+  /* =======================================================
+     1. DASHBOARD
+     -------------------------------------------------------
+     O SCROLL PRINCIPAL FICA NO .main-area
+  ======================================================= */
+
+  .main-area {
+    min-width: 0 !important;
+    min-height: 0 !important;
+
+    height: auto !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    -webkit-overflow-scrolling: touch;
+
+    overscroll-behavior-y: contain;
+  }
+
+  /* =======================================================
+     2. TODAS AS PÁGINAS
+     -------------------------------------------------------
+     A página não cria um segundo scroll.
+     Quem rola é o Dashboard.
+  ======================================================= */
+
+  .page-container,
+  .home-page,
+  .lineup-page,
+  .training-page {
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    height: auto !important;
+
+    min-height: 100% !important;
+
+    overflow: visible !important;
+  }
+
+  /* =======================================================
+     3. HOME
+  ======================================================= */
+
+  .home-page {
+    position: relative !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    padding: 0 14px 120px !important;
+
+    overflow: visible !important;
+  }
+
+  /* -------------------------------------------------------
+     HOME HEADER
+  ------------------------------------------------------- */
+
+  .home-header {
+    position: relative !important;
+
+    top: auto !important;
+
+    flex: 0 0 auto !important;
+
+    width: 100% !important;
+
+    min-height: 58px !important;
+
+    padding: 10px 0 !important;
+
+    z-index: 20;
+  }
+
+  .home-navigation {
+    display: none !important;
+  }
+
+  /* -------------------------------------------------------
+     HOME HERO
+  ------------------------------------------------------- */
+
+  .home-hero {
+    position: relative !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: flex-start !important;
+
+    justify-content: flex-start !important;
+
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-height: auto !important;
+
+    flex: none !important;
+
+    padding: 28px 0 24px !important;
+
+    gap: 0 !important;
+
+    overflow: visible !important;
+  }
+
+  /* -------------------------------------------------------
+     HOME TEXTO
+     ------------------------------------------------------- */
+
+  .home-hero-copy {
+    position: relative !important;
+
+    left: auto !important;
+    top: auto !important;
+
+    width: 100% !important;
+
+    max-width: 100% !important;
+
+    transform: none !important;
+
+    margin: 0 !important;
+
+    z-index: 10;
+  }
+
+  .home-eyebrow {
+    margin-bottom: 14px !important;
+
+    font-size: 8px !important;
+
+    letter-spacing: 0.14em !important;
+  }
+
+  .home-eyebrow-line {
+    width: 22px !important;
+  }
+
+  .home-hero-copy h1 {
+    margin: 0 !important;
+
+    width: 100% !important;
+
+    font-size: clamp(34px, 11vw, 48px) !important;
+
+    line-height: 0.96 !important;
+
+    letter-spacing: -0.045em !important;
+  }
+
+  .home-hero-copy p {
+    margin: 16px 0 18px !important;
+
+    font-size: 11px !important;
+
+    letter-spacing: 0.13em !important;
+  }
+
+  .home-primary-button {
+    width: auto !important;
+
+    min-width: 170px !important;
+
+    height: 42px !important;
+
+    justify-content: center !important;
+  }
+
+  /* -------------------------------------------------------
+     HOME CAMPO
+     
+     O campo grande é decoração da versão desktop.
+     No celular deixamos os cards aparecerem logo abaixo.
+  ------------------------------------------------------- */
+
+  .home-field-stage,
+  .home-hero-analytics,
+  .home-analytics-visual,
+  .home-hero-status {
+    display: none !important;
+  }
+
+  /* -------------------------------------------------------
+     HOME TOOLS
+  ------------------------------------------------------- */
+
+  .home-tools {
+    position: relative !important;
+
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    overflow: visible !important;
+
+    z-index: 5;
+  }
+
+  .home-tools-heading {
+    width: 100% !important;
+
+    margin-bottom: 10px !important;
+
+    position: relative !important;
+  }
+
+  .home-tools-heading span {
+    font-size: 8px !important;
+
+    letter-spacing: 0.16em !important;
+  }
+
+  .home-tools-grid {
+    display: grid !important;
+
+    grid-template-columns: 1fr !important;
+
+    width: 100% !important;
+
+    height: auto !important;
+
+    gap: 12px !important;
+  }
+
+  .home-tool-card,
+  .home-tools-grid > button {
+    position: relative !important;
+
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    min-height: 150px !important;
+
+    height: 150px !important;
+
+    flex: none !important;
+
+    transform: none !important;
+  }
+
+  .home-tool-card:hover,
+  .home-tools-grid > button:hover {
+    transform: none !important;
+  }
+
+  /* -------------------------------------------------------
+     HOME FOOTER
+  ------------------------------------------------------- */
+
+  .home-footer {
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    padding: 26px 0 20px !important;
+
+    margin: 0 !important;
+
+    flex-direction: column !important;
+
+    align-items: flex-start !important;
+
+    gap: 8px !important;
+  }
+
+  /* =======================================================
+     4. LINEUP
+  ======================================================= */
+
+  .lineup-page {
+    width: 100% !important;
+
+    min-height: max-content !important;
+
+    height: auto !important;
+
+    padding-bottom: 100px !important;
+
+    overflow: visible !important;
+  }
+
+  .lineup-content {
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    overflow: visible !important;
+  }
+
+  /* -------------------------------------------------------
+     TÍTULO DO LINEUP
+  ------------------------------------------------------- */
+
+  .lineup-page h1 {
+    font-size: clamp(30px, 9vw, 42px) !important;
+  }
+
+  /* -------------------------------------------------------
+     CONTAINER DO CAMPO
+  ------------------------------------------------------- */
+
+  .lineup-field-container {
+    width: 100% !important;
+
+    max-width: 100% !important;
+
+    min-width: 0 !important;
+
+    height: auto !important;
+
+    overflow: visible !important;
+  }
+
+  /* -------------------------------------------------------
+     CAMPO
+     -------------------------------------------------------
+     Mantemos o grid de 6 colunas.
+     O campo fica mais alto no celular.
+  ------------------------------------------------------- */
+
+  .football-field {
+    position: relative !important;
+
+    width: 100% !important;
+
+    max-width: 100% !important;
+
+    min-width: 0 !important;
+
+    height: 780px !important;
+
+    min-height: 780px !important;
+
+    padding: 14px !important;
+
+    gap: 5px !important;
+
+    display: grid !important;
+
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+
+    grid-template-rows: repeat(5, minmax(0, 1fr)) !important;
+
+    border-radius: 20px !important;
+
+    overflow: hidden !important;
+  }
+
+  /* -------------------------------------------------------
+     MARCAÇÕES DO CAMPO
+  ------------------------------------------------------- */
+
+  .center-circle {
+    width: 90px !important;
+
+    height: 90px !important;
+  }
+
+  .penalty-area-top,
+  .penalty-area-bottom {
+    width: 62px !important;
+  }
+
+  .goal-area-top,
+  .goal-area-bottom {
+    width: 28px !important;
+  }
+
+  /* -------------------------------------------------------
+     POSITION SLOT
+  ------------------------------------------------------- */
+
+  .football-field .position-slot {
+    width: 100% !important;
+
+    height: 100% !important;
+
+    min-width: 0 !important;
+
+    min-height: 0 !important;
+
+    border-radius: 12px !important;
+
+    overflow: hidden !important;
+  }
+
+  .football-field .position-slot:hover {
+    transform: none !important;
+  }
+
+  .football-field .position-slot-plus {
+    width: 20px !important;
+
+    height: 20px !important;
+  }
+
+  .football-field .position-slot small {
+    font-size: 10px !important;
+  }
+
+  /* -------------------------------------------------------
+     PLAYER CARD DENTRO DO CAMPO
+  ------------------------------------------------------- */
+
+  .football-field .player-slot-card {
+    width: 100% !important;
+
+    height: 100% !important;
+
+    min-width: 0 !important;
+
+    border-radius: 12px !important;
+  }
+
+  .football-field .player-slot-main {
+    padding: 7px !important;
+
+    gap: 4px !important;
+  }
+
+  .football-field .player-slot-name {
+    font-size: 10px !important;
+  }
+
+  .football-field .player-slot-overall {
+    font-size: 14px !important;
+  }
+
+  .football-field .star {
+    font-size: 8px !important;
+  }
+
+  /* No celular não usamos hover para mostrar ações. */
+  .football-field .player-slot-actions {
+    display: none !important;
+  }
+
+  /* =======================================================
+     5. TRAINING — RESULTADO
+  ======================================================= */
+
+  .training-final-skills {
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    flex: none !important;
+
+    overflow: visible !important;
+
+    padding: 12px !important;
+
+    margin-bottom: 20px !important;
+  }
+
+  /* -------------------------------------------------------
+     HEADER DO RESULTADO
+  ------------------------------------------------------- */
+
+  .training-final-skills-header {
+    width: 100% !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: stretch !important;
+
+    gap: 12px !important;
+
+    margin-bottom: 12px !important;
+  }
+
+  .training-final-skills-title {
+    width: 100% !important;
+
+    min-width: 0 !important;
+  }
+
+  .training-final-skills-title h2 {
+    font-size: 18px !important;
+  }
+
+  .training-final-skills-title p {
+    font-size: 10px !important;
+
+    line-height: 1.4 !important;
+  }
+
+  /* -------------------------------------------------------
+     OVR + UPDATE
+  ------------------------------------------------------- */
+
+  .training-final-skills-player-actions {
+    width: 100% !important;
+
+    display: grid !important;
+
+    grid-template-columns: 1fr 1fr !important;
+
+    gap: 7px !important;
+
+    align-items: stretch !important;
+
+    justify-content: stretch !important;
+  }
+
+  .training-final-skills-overall-card {
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    height: 48px !important;
+
+    min-height: 48px !important;
+
+    padding: 6px 8px !important;
+
+    align-items: center !important;
+  }
+
+  .training-final-skills-update {
+    grid-column: 1 / -1 !important;
+
+    width: 100% !important;
+
+    height: 44px !important;
+
+    min-height: 44px !important;
+  }
+
+  /* =======================================================
+     6. TRAINING — 3 GRUPOS
+     -------------------------------------------------------
+     AQUI ESTAVA O PROBLEMA PRINCIPAL.
+     
+     Desktop:
+       3 colunas
+
+     Mobile:
+       1 coluna
+       cada grupo tem sua própria altura
+       nada de flex:1 tentando ocupar o mesmo espaço
+  ======================================================= */
+
+  .training-final-skills-groups {
+    width: 100% !important;
+
+    display: grid !important;
+
+    grid-template-columns: 1fr !important;
+
+    grid-auto-rows: auto !important;
+
+    gap: 10px !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    flex: none !important;
+
+    overflow: visible !important;
+  }
+
+  .training-final-skills-group {
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    flex: none !important;
+
+    padding: 10px !important;
+
+    border-radius: 10px !important;
+
+    overflow: visible !important;
+  }
+
+  /* -------------------------------------------------------
+     CABEÇALHO DO GRUPO
+  ------------------------------------------------------- */
+
+  .training-final-skills-group-header {
+    flex: none !important;
+
+    width: 100% !important;
+
+    min-height: 30px !important;
+
+    padding-bottom: 7px !important;
+
+    margin-bottom: 5px !important;
+  }
+
+  .training-final-skills-group-header h3 {
+    font-size: 10px !important;
+
+    white-space: nowrap !important;
+  }
+
+  /* -------------------------------------------------------
+     LISTA DE SKILLS
+  ------------------------------------------------------- */
+
+  .training-final-skills-list {
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    flex: none !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    gap: 2px !important;
+  }
+
+  /* -------------------------------------------------------
+     LINHAS DAS SKILLS
+  ------------------------------------------------------- */
+
+  .training-final-skill-row {
+    width: 100% !important;
+
+    min-height: 34px !important;
+
+    height: 34px !important;
+
+    flex: none !important;
+
+    padding: 5px 7px !important;
+
+    gap: 8px !important;
+  }
+
+  .training-final-skill-name {
+    min-width: 0 !important;
+
+    font-size: 10px !important;
+  }
+
+  .training-final-skills-value {
+    flex-shrink: 0 !important;
+
+    font-size: 10px !important;
+
+    gap: 3px !important;
+  }
+
+  .training-final-skills-value-static {
+    font-size: 11px !important;
+  }
+
+  .training-final-skills-value-old,
+  .training-final-skills-arrow {
+    font-size: 9px !important;
+  }
+
+  .training-final-skills-value-new {
+    font-size: 13px !important;
+  }
+
+  /* =======================================================
+     7. MOBILE — ESPAÇO PARA A BARRA INFERIOR
+  ======================================================= */
+
+  .home-page,
+  .lineup-page,
+  .training-page,
+  .page-container {
+    padding-bottom: 110px !important;
+  }
+}
+
+/* =========================================================
+   CELULARES PEQUENOS
+========================================================= */
+
+@media (max-width: 390px) {
+  .home-page {
+    padding-left: 11px !important;
+    padding-right: 11px !important;
+  }
+
+  .home-hero-copy h1 {
+    font-size: 36px !important;
+  }
+
+  .home-tool-card,
+  .home-tools-grid > button {
+    min-height: 140px !important;
+
+    height: 140px !important;
+  }
+
+  .football-field {
+    height: 720px !important;
+
+    min-height: 720px !important;
+
+    padding: 10px !important;
+  }
+
+  .training-final-skills {
+    padding: 10px !important;
+  }
+
+  .training-final-skill-row {
+    min-height: 32px !important;
+
+    height: 32px !important;
+
+    padding: 4px 6px !important;
+  }
+}
+
+/* =========================================================
+   LINEUP — CORREÇÃO FINAL DO SCROLL MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  /* O container principal da aplicação pode rolar */
+  .main-area {
+    height: auto !important;
+    min-height: 0 !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* A página do lineup precisa crescer junto com o campo */
+  .lineup-page {
+    width: 100% !important;
+
+    height: auto !important;
+    min-height: max-content !important;
+
+    overflow: visible !important;
+
+    padding-bottom: 130px !important;
+  }
+
+  /* Conteúdo não pode ficar preso em 100% de altura */
+  .lineup-content {
+    width: 100% !important;
+
+    height: auto !important;
+    min-height: max-content !important;
+
+    overflow: visible !important;
+  }
+
+  /* Container do campo acompanha a altura real */
+  .lineup-field-container {
+    width: 100% !important;
+
+    height: auto !important;
+    min-height: max-content !important;
+
+    overflow: visible !important;
+  }
+
+  /*
+     IMPORTANTE:
+     o campo continua com 780px de altura.
+     Portanto o conteúdo total da página passa
+     a ser maior que a tela e o .main-area consegue
+     fazer o scroll.
+  */
+  .football-field {
+    width: 100% !important;
+
+    height: 780px !important;
+    min-height: 780px !important;
+
+    flex-shrink: 0 !important;
+
+    overflow: hidden !important;
+  }
+
+  /* Espaço extra para a barra inferior não cobrir o campo */
+  .lineup-page::after {
+    content: "";
+
+    display: block;
+
+    width: 100%;
+
+    height: 20px;
+  }
+}
+
+/* =========================================================
+   CELULARES PEQUENOS
+========================================================= */
+
+@media (max-width: 390px) {
+  .lineup-page {
+    padding-bottom: 130px !important;
+  }
+
+  .football-field {
+    height: 720px !important;
+    min-height: 720px !important;
+  }
+}
+
+/* =========================================================
+   LINEUP — SCROLL MOBILE DEFINITIVO
+   =========================================================
+   O Lineup usa:
+   .team-lineup
+   .team-lineup-content
+   .team-lineup-manager
+   .football-field
+
+   Os arquivos desktop usam height: 100% + overflow: hidden.
+   No mobile precisamos deixar o conteúdo crescer para que
+   o .main-area seja o responsável pelo scroll vertical.
+========================================================= */
+
+@media (max-width: 768px) {
+  /* =======================================================
+     ÁREA PRINCIPAL — ÚNICO SCROLL VERTICAL
+  ======================================================= */
+
+  .main-area {
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+
+  /* =======================================================
+     PÁGINA DO LINEUP
+  ======================================================= */
+
+  .team-lineup {
+    width: 100% !important;
+
+    height: auto !important;
+    min-height: max-content !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    overflow: visible !important;
+  }
+
+  /* =======================================================
+     CONTEÚDO DO LINEUP
+  ======================================================= */
+
+  .team-lineup-content {
+    width: 100% !important;
+
+    height: auto !important;
+    min-height: max-content !important;
+
+    flex: none !important;
+
+    display: block !important;
+
+    overflow: visible !important;
+  }
+
+  /* =======================================================
+     GERENCIADOR DO LINEUP
+  ======================================================= */
+
+  .team-lineup-manager {
+    width: 100% !important;
+
+    height: auto !important;
+    min-height: max-content !important;
+
+    display: block !important;
+
+    overflow: visible !important;
+  }
+
+  /* =======================================================
+     CABEÇALHO DO LINEUP
+  ======================================================= */
+
+  .team-lineup-header {
+    width: 100% !important;
+    flex-shrink: 0 !important;
+
+    margin-bottom: 14px !important;
+  }
+
+  .team-lineup-header h1 {
+    font-size: clamp(26px, 8vw, 36px) !important;
+  }
+
+  .team-lineup-header-actions {
+    flex-wrap: wrap !important;
+  }
+
+  /* =======================================================
+     CAMPO DE FUTEBOL
+  ======================================================= */
+
+  .team-lineup-manager .football-field {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    height: 780px !important;
+    min-height: 780px !important;
+
+    flex-shrink: 0 !important;
+
+    overflow: hidden !important;
+  }
+
+  /* =======================================================
+     ESPAÇO FINAL
+     Evita que a barra inferior cubra o final do campo.
+  ======================================================= */
+
+  .team-lineup::after {
+    content: "";
+
+    display: block;
+
+    width: 100%;
+    height: 130px;
+
+    flex-shrink: 0;
+  }
+}
+
+/* =========================================================
+   CELULARES PEQUENOS
+========================================================= */
+
+@media (max-width: 390px) {
+  .team-lineup-manager .football-field {
+    height: 720px !important;
+    min-height: 720px !important;
+  }
+
+  .team-lineup::after {
+    height: 125px;
+  }
+}

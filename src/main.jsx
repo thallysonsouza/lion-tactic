@@ -10,6 +10,7 @@ import App from "./App";
 
 import "./styles/theme.css";
 import "./index.css";
+import "./styles/mobile.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 
